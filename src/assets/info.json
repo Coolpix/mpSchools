@@ -1,0 +1,21 @@
+{
+  "items": [
+    {
+      "name": "Juan Carlos I",
+      "children": [
+        {
+          "id" : 1,
+          "name": "Medio (10:30 - 11:30)"
+        },
+        {
+          "id" : 2,
+          "name": "Niños Avanzado (11:45 - 12:45)"
+        },
+        {
+          "id" : 3,
+          "name": "Básico (13:00 - 14:00)"
+        }
+      ]
+    }
+  ]
+}

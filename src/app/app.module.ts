@@ -8,22 +8,34 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {GroupsPage} from "../pages/groups/groups";
+import {HttpClientModule} from "@angular/common/http";
+import {SchoolPage} from "../pages/school/school";
+import {StudentPage} from "../pages/student/student";
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    GroupsPage,
+    SchoolPage,
+    StudentPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    GroupsPage,
+    SchoolPage,
+    StudentPage
   ],
   providers: [
     StatusBar,
