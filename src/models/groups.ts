@@ -1,0 +1,3 @@
+interface Group {
+  items: any;
+}

@@ -13,6 +13,18 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="outer-content">
+  <ion-list>
+    <ion-item>
+      <ion-input placeholder="Nombre" [(ngModel)]="student.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Grupo</ion-label>
+      <ion-select [(ngModel)]="student.group">
+        <ion-option *ngFor="let group of groups" value="{{group.id}}">{{group.location}} - {{group.name}} - {{group.time}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <button ion-button secondary (click)="getData()">Crear</button>
   <button ion-button secondary (click)="backHome()">Go Home</button>
 </ion-content>

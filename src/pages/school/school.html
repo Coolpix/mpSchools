@@ -15,12 +15,12 @@
 <ion-content class="outer-content">
   <ion-list>
     <ion-item>
-      <ion-input placeholder="Title"></ion-input>
+      <ion-input placeholder="Nombre" [(ngModel)]="school.name"></ion-input>
     </ion-item>
     <ion-list>
       <ion-item>
         <ion-label>Localización</ion-label>
-        <ion-select [(ngModel)]="locationSelected">
+        <ion-select [(ngModel)]="school.location">
           <ion-option *ngFor="let loc of locations" value="{{loc.value}}">{{loc.name}}</ion-option>
         </ion-select>
       </ion-item>
@@ -30,21 +30,33 @@
   <ion-list>
     <ion-item>
       <ion-label>Més de inicio</ion-label>
-      <ion-datetime displayFormat="MMMM" [(ngModel)]="event.dateStart"></ion-datetime>
+      <ion-datetime displayFormat="MMMM - YYYY" [(ngModel)]="school.dateStart"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Més de finalización</ion-label>
-      <ion-datetime displayFormat="MMMM" [(ngModel)]="event.dateEnd"></ion-datetime>
+      <ion-datetime displayFormat="MMMM - YYYY" [(ngModel)]="school.dateEnd"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Días</ion-label>
+      <ion-select [(ngModel)]="school.days" multiple="true">
+        <ion-option value="1">Lunes</ion-option>
+        <ion-option value="2">Martes</ion-option>
+        <ion-option value="3">Miercoles</ion-option>
+        <ion-option value="4">Jueves</ion-option>
+        <ion-option value="5">Viernes</ion-option>
+        <ion-option value="6">Sábado</ion-option>
+        <ion-option value="0">Domingo</ion-option>
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Hora Comienzo</ion-label>
-      <ion-datetime displayFormat="HH:mm A" pickerFormat="HH mm A" [(ngModel)]="event.timeStart"></ion-datetime>
+      <ion-datetime displayFormat="HH:mm A" pickerFormat="HH mm A" [(ngModel)]="school.timeStart"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Hora Fín</ion-label>
-      <ion-datetime displayFormat="HH:mm A" pickerFormat="HH mm A" [(ngModel)]="event.timeEnd"></ion-datetime>
+      <ion-datetime displayFormat="HH:mm A" pickerFormat="HH mm A" [(ngModel)]="school.timeEnd"></ion-datetime>
     </ion-item>
   </ion-list>
-  <button ion-button secondary (click)="backHome()">Crear</button>
+  <button ion-button secondary (click)="getData()">Crear</button>
   <button ion-button secondary (click)="backHome()">Go Home</button>
 </ion-content>

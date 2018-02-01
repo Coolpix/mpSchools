@@ -13,12 +13,18 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'groups.html',
 })
 export class GroupsPage {
-  groupName: any;
   groupId: any;
+  groupLocation: any;
+  groupName: any;
+  groupTime: any;
+  groupPhoto: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.groupId = navParams.get('id');
+    this.groupLocation = navParams.get('location');
     this.groupName = navParams.get('name');
+    this.groupTime = navParams.get('time');
+    this.groupPhoto = navParams.get('photo');
   }
 
   ionViewDidLoad() {

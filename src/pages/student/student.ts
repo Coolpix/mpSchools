@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {HttpClient} from "@angular/common/http";
 
 /**
  * Generated class for the StudentPage page.
@@ -15,7 +16,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class StudentPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public student = {
+    name: '',
+    group: ''
+  }
+
+  groups: Group[];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+    let groupsData = this.http.get<Group>('../assets/groups.json');
+    groupsData.subscribe(result => {
+      this.groups = result.items;
+    })
   }
 
   ionViewDidLoad() {
@@ -24,6 +36,10 @@ export class StudentPage {
 
   backHome() {
     this.navCtrl.pop();
+  }
+
+  getData(){
+    console.log(this.student);
   }
 
 }
