@@ -6,9 +6,31 @@
     <ion-title>{{groupLocation}} - {{groupName}} - {{groupTime}}</ion-title>
   </ion-navbar>
 </ion-header>
-
   <ion-content *ngIf="groupId && groupName" padding>
-    <ion-list>
+
+      <ion-item-group>
+        <ion-item-divider color="light">Febrero 2018</ion-item-divider>
+        <ion-item>Día 3</ion-item>
+        <ion-item>Día 10</ion-item>
+        <ion-item>Día 17</ion-item>
+        <ion-item>Día 24</ion-item>
+      </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider color="light">Marzo 2018</ion-item-divider>
+      <ion-item>Día 3</ion-item>
+      <ion-item>Día 10</ion-item>
+      <ion-item>Día 17</ion-item>
+      <ion-item>Día 24</ion-item>
+      <ion-item>Día 31</ion-item>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider color="light">Abril 2018</ion-item-divider>
+      <ion-item>Día 7</ion-item>
+      <ion-item>Día 14</ion-item>
+      <ion-item>Día 21</ion-item>
+      <ion-item>Día 28</ion-item>
+    </ion-item-group>
+    <!--<ion-list>
       <ion-list-header>
         Listado de alumnos
       </ion-list-header>
@@ -72,7 +94,7 @@
         <ion-label>Galadriel</ion-label>
         <ion-toggle></ion-toggle>
       </ion-item>
-    </ion-list>
+    </ion-list>-->
     <button ion-button secondary (click)="backHome()">Go Home</button>
   </ion-content>
 
