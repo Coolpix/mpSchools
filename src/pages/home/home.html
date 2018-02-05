@@ -3,13 +3,31 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Tus grupos de escuela</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="card-background-page">
-  <ion-card *ngFor="let group of groups" (click)="openPageGroups(group)">
-    <img src="../../assets/imgs/{{group.photo}}"/>
-    <div class="card-title">{{group.location}} - {{group.name}} - {{group.time}}</div>
-  </ion-card>
+<ion-content padding>
+  <ion-list>
+    <accordion-list [title]="'Juan Carlos I'" [expanded]="index===0" textColor="#FFF">
+      <ion-item *ngFor="let group of groups" (click)="openPageGroups(group)">
+        <ion-thumbnail item-start>
+          <img src="../../assets/imgs/card-amsterdam.png">
+        </ion-thumbnail>
+        <h2>{{group.location}} - {{ group.name }}</h2>
+        <p>{{ group.time }}</p>
+        <button ion-button clear item-end>Entrar</button>
+      </ion-item>
+    </accordion-list>
+    <accordion-list [title]="'Retiro'" [expanded]="index===0" textColor="#FFF">
+      <ion-item *ngFor="let group of groups" (click)="openPageGroups(group)">
+        <ion-thumbnail item-start>
+          <img src="../../assets/imgs/card-amsterdam.png">
+        </ion-thumbnail>
+        <h2>{{group.location}} - {{ group.name }}</h2>
+        <p>{{ group.time }}</p>
+        <button ion-button clear item-end>Entrar</button>
+      </ion-item>
+    </accordion-list>
+  </ion-list>
 </ion-content>

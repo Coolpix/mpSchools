@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {AssistsPage} from "../assists/assists";
 
 /**
  * Generated class for the GroupsPage page.
@@ -35,4 +36,7 @@ export class GroupsPage {
     this.navCtrl.pop();
   }
 
+  gotoAssist(){
+    this.navCtrl.push(AssistsPage);
+  }
 }

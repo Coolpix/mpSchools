@@ -11,6 +11,8 @@ import {GroupsPage} from "../pages/groups/groups";
 import {HttpClientModule} from "@angular/common/http";
 import {SchoolPage} from "../pages/school/school";
 import {StudentPage} from "../pages/student/student";
+import {ComponentsModule} from "../components/components.module";
+import {AssistsPage} from "../pages/assists/assists";
 
 
 @NgModule({
@@ -19,11 +21,13 @@ import {StudentPage} from "../pages/student/student";
     HomePage,
     GroupsPage,
     SchoolPage,
-    StudentPage
+    StudentPage,
+    AssistsPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ComponentsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -32,7 +36,8 @@ import {StudentPage} from "../pages/student/student";
     HomePage,
     GroupsPage,
     SchoolPage,
-    StudentPage
+    StudentPage,
+    AssistsPage
   ],
   providers: [
     StatusBar,
