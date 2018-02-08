@@ -29,9 +29,9 @@ export class SchoolPage {
   locations: Location[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
-    let locationsData = this.http.get<Location>('../assets/locations.json');
+    let locationsData = this.http.get<Location[]>('http://homestead.test/zones');
     locationsData.subscribe(result => {
-      this.locations = result.items;
+      this.locations = result;
     })
   }
 

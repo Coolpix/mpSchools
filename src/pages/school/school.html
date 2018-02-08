@@ -15,14 +15,12 @@
     <ion-item>
       <ion-input placeholder="Nombre" [(ngModel)]="school.name"></ion-input>
     </ion-item>
-    <ion-list>
-      <ion-item>
-        <ion-label>Localización</ion-label>
-        <ion-select [(ngModel)]="school.location">
-          <ion-option *ngFor="let loc of locations" value="{{loc.value}}">{{loc.name}}</ion-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
+    <ion-item>
+      <ion-label>Localización</ion-label>
+      <ion-select [(ngModel)]="school.location">
+        <ion-option *ngFor="let loc of locations" value="{{loc.id}}">{{loc.name}}</ion-option>
+      </ion-select>
+    </ion-item>
   </ion-list>
 
   <ion-list>
