@@ -24,9 +24,9 @@ export class StudentPage {
   groups: Group[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
-    let groupsData = this.http.get<Group>('../assets/groups.json');
+    let groupsData = this.http.get<Group[]>('http://homestead.test/groups');
     groupsData.subscribe(result => {
-      this.groups = result.items;
+      this.groups = result;
     })
   }
 

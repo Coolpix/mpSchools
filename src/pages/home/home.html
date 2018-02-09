@@ -9,23 +9,13 @@
 
 <ion-content padding>
   <ion-list>
-    <accordion-list [title]="'Juan Carlos I'" [expanded]="index===0" textColor="#FFF">
-      <ion-item *ngFor="let group of groups" (click)="openPageGroups(group)">
+    <accordion-list *ngFor="let zone of zones" [title]="zone.name" [expanded]="index===0" textColor="#FFF">
+      <ion-item *ngFor="let group of zone.groups" (click)="openPageGroups(zone.name, group)">
         <ion-thumbnail item-start>
           <img src="../../assets/imgs/card-amsterdam.png">
         </ion-thumbnail>
-        <h2>{{group.location}} - {{ group.name }}</h2>
-        <p>{{ group.time }}</p>
-        <button ion-button clear item-end>Entrar</button>
-      </ion-item>
-    </accordion-list>
-    <accordion-list [title]="'Retiro'" [expanded]="index===0" textColor="#FFF">
-      <ion-item *ngFor="let group of groups" (click)="openPageGroups(group)">
-        <ion-thumbnail item-start>
-          <img src="../../assets/imgs/card-amsterdam.png">
-        </ion-thumbnail>
-        <h2>{{group.location}} - {{ group.name }}</h2>
-        <p>{{ group.time }}</p>
+        <h2>{{ group.name }}</h2>
+        <p>{{ group.time_start }} - {{ group.time_end }}</p>
         <button ion-button clear item-end>Entrar</button>
       </ion-item>
     </accordion-list>

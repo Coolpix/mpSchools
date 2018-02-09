@@ -17,15 +17,17 @@ export class GroupsPage {
   groupId: any;
   groupLocation: any;
   groupName: any;
-  groupTime: any;
+  groupTimeStart: any;
+  groupTimeEnd: any;
   groupPhoto: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(navParams);
     this.groupId = navParams.get('id');
     this.groupLocation = navParams.get('location');
     this.groupName = navParams.get('name');
-    this.groupTime = navParams.get('time');
-    this.groupPhoto = navParams.get('photo');
+    this.groupTimeStart = navParams.get('time_start');
+    this.groupTimeEnd = navParams.get('time_end');
   }
 
   ionViewDidLoad() {

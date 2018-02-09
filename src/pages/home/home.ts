@@ -1,31 +1,31 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {GroupsPage} from "../groups/groups";
-import {HttpClient} from "@angular/common/http";
+import { GroupsPage } from "../groups/groups";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  groups: Group[];
+  zones: Zones[];
 
   constructor(public navCtrl: NavController, private http: HttpClient) {
-    let groupsData = this.http.get<Group>('../assets/groups.json');
+    let groupsData = this.http.get<Group[]>('http://homestead.test/zones');
     groupsData.subscribe(result => {
-      this.groups = result.items;
+      this.zones = result;
     })
   }
 
-  openPageGroups(page) {
+  openPageGroups(zoneName, group) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.navCtrl.push(GroupsPage ,{
-      id: page.id,
-      location: page.location,
-      name: page.name,
-      time: page.time,
-      photo: page.photo
+      id: group.id,
+      location: zoneName,
+      name: group.name,
+      time_start: group.time_start,
+      time_end: group.time_end
     });
   }
 

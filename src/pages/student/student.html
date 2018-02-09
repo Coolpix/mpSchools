@@ -18,7 +18,7 @@
     <ion-item>
       <ion-label>Grupo</ion-label>
       <ion-select [(ngModel)]="student.group">
-        <ion-option *ngFor="let group of groups" value="{{group.id}}">{{group.location}} - {{group.name}} - {{group.time}}</ion-option>
+        <ion-option *ngFor="let group of groups" value="{{group.id}}">{{group.zone.name}} - {{group.name}} - {{group.time_start}} - {{group.time_end}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
