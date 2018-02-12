@@ -19,7 +19,6 @@ export class GroupsPage {
   groupName: any;
   groupTimeStart: any;
   groupTimeEnd: any;
-  groupPhoto: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     console.log(navParams);
