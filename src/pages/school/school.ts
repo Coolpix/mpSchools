@@ -18,10 +18,10 @@ export class SchoolPage {
 
   public school = {
     name: '',
-    dateStart: '2017-08-01',
-    dateEnd: '2018-06-20',
-    timeStart: '19:00',
-    timeEnd: '20:00',
+    dateStart: '',
+    dateEnd: '',
+    timeStart: '',
+    timeEnd: '',
     days: [],
     location: ''
   }
@@ -39,12 +39,17 @@ export class SchoolPage {
     console.log('ionViewDidLoad SchoolPage');
   }
 
+  addSchool(){
+   this.school.days = this.calculateLessons();
+   console.log(this.school);
+  }
+
   getDaysFromMonth(year: number, month: string, days: Array<string>){
     let getTot = daysInMonth(month, year);
     let daysOfMonth = [];
 
     for(let i=1;i<=getTot;i++){
-      let newDate = new Date(year, parseInt(month),i)
+      let newDate = new Date(year, parseInt(month),i);
       for (let x=0;x<days.length;x++){
         if(newDate.getDay() == parseInt(days[x])){
           daysOfMonth.push(i);
@@ -63,7 +68,7 @@ export class SchoolPage {
     this.navCtrl.pop();
   }
 
-  getData(){
+  calculateLessons(){
     let years = [new Date(this.school.dateStart).getFullYear(), new Date(this.school.dateEnd).getFullYear()];
     let startMonth = new Date(this.school.dateStart).getMonth();
     let endMonth = new Date(this.school.dateEnd).getMonth();
@@ -84,19 +89,23 @@ export class SchoolPage {
 
 
     for (let x=0; x<monthsStartYear.length; x++) {
+      let arrayOfMonth = [];
       let daysFromMonth = this.getDaysFromMonth(years[0], monthsStartYear[x], this.school.days);
       for (let i=0; i<daysFromMonth.length; i++) {
-        daysOfClass.push(new Date(years[0], monthsStartYear[x], daysFromMonth[i]));
+        arrayOfMonth.push(new Date(years[0], monthsStartYear[x], daysFromMonth[i]));
       }
+      daysOfClass.push(arrayOfMonth);
     }
 
     for (let x=0; x<monthsEndYear.length; x++) {
+      let arrayOfMonth = [];
       let daysFromMonth = this.getDaysFromMonth(years[1], monthsEndYear[x], this.school.days);
       for (let i=0; i<daysFromMonth.length; i++) {
-        daysOfClass.push(new Date(years[1], monthsEndYear[x], daysFromMonth[i]));
+        arrayOfMonth.push(new Date(years[1], monthsEndYear[x], daysFromMonth[i]));
       }
+      daysOfClass.push(arrayOfMonth);
     }
 
-    console.log(daysOfClass);
+    return daysOfClass;
   }
 }
