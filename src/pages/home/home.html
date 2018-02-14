@@ -9,14 +9,15 @@
 
 <ion-content padding>
   <ion-list>
-    <accordion-list *ngFor="let zone of zones" [title]="zone.name" [expanded]="index===0" textColor="#FFF">
-      <ion-item *ngFor="let group of zone.groups" (click)="openPageGroups(zone.name, group)">
-        <ion-thumbnail item-start>
+    <accordion-list *ngFor="let zone of zones" [title]="zone.name" [expanded]="index===0" textColor="#FFF" [hidden]="zone.groups.length==0">
+      <ion-item *ngFor="let group of zone.groups">
+        <ion-thumbnail item-start (click)="openPageGroups(zone.name, group)">
           <img src="../../assets/imgs/card-amsterdam.png">
         </ion-thumbnail>
-        <h2>{{ group.name }}</h2>
-        <p>{{ group.time_start }} - {{ group.time_end }}</p>
-        <button ion-button clear item-end>Entrar</button>
+        <h2 (click)="openPageGroups(zone.name, group)">{{ group.name }}</h2>
+        <p (click)="openPageGroups(zone.name, group)">{{ group.time_start }} - {{ group.time_end }}</p>
+        <button ion-button clear item-end (click)="openPageGroups(zone.name, group)">Entrar</button>
+        <button ion-button clear item-end (click)="deleteGroup(group.id)">Borrar</button>
       </ion-item>
     </accordion-list>
   </ion-list>

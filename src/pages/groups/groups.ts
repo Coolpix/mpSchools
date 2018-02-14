@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 import {AssistsPage} from "../assists/assists";
+import {HttpClient} from "@angular/common/http";
 
 /**
  * Generated class for the GroupsPage page.
@@ -14,30 +15,25 @@ import {AssistsPage} from "../assists/assists";
   templateUrl: 'groups.html',
 })
 export class GroupsPage {
-  groupId: any;
-  groupLocation: any;
-  groupName: any;
-  groupTimeStart: any;
-  groupTimeEnd: any;
+  group: Group;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(navParams);
-    this.groupId = navParams.get('id');
-    this.groupLocation = navParams.get('location');
-    this.groupName = navParams.get('name');
-    this.groupTimeStart = navParams.get('time_start');
-    this.groupTimeEnd = navParams.get('time_end');
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GroupsPage');
+  ionViewWillEnter(){
+    this.http.get<Group>('http://homestead.test/groups/' + this.navParams.get('id')).subscribe(
+      result => {
+        this.group = result;
+        console.log(this.group);
+      });
   }
 
   backHome() {
     this.navCtrl.pop();
   }
 
-  gotoAssist(){
+  gotoAssist() {
     this.navCtrl.push(AssistsPage);
   }
 }

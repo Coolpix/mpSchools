@@ -16,12 +16,25 @@
       <ion-input placeholder="Nombre" [(ngModel)]="student.name"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-input placeholder="Teĺefono" [(ngModel)]="student.phone_number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Email" [(ngModel)]="student.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sexo</ion-label>
+      <ion-select [(ngModel)]="student.gender">
+        <ion-option value="f">Femenino</ion-option>
+        <ion-option value="m">Masculino</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
       <ion-label>Grupo</ion-label>
-      <ion-select [(ngModel)]="student.group">
+      <ion-select [(ngModel)]="student.groups">
         <ion-option *ngFor="let group of groups" value="{{group.id}}">{{group.zone.name}} - {{group.name}} - {{group.time_start}} - {{group.time_end}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
-  <button ion-button secondary (click)="getData()">Crear</button>
-  <button ion-button secondary (click)="backHome()">Go Home</button>
+  <button ion-button secondary (click)="addStudent()">Crear alumno</button>
+  <button ion-button secondary (click)="backHome()">Volver</button>
 </ion-content>

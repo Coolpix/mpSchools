@@ -1,3 +1,3 @@
 interface Group {
-
+  students: any;
 }

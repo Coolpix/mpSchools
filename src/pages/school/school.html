@@ -17,7 +17,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Localización</ion-label>
-      <ion-select [(ngModel)]="school.location">
+      <ion-select [(ngModel)]="school.zone">
         <ion-option *ngFor="let loc of locations" value="{{loc.id}}">{{loc.name}}</ion-option>
       </ion-select>
     </ion-item>
@@ -25,16 +25,16 @@
 
   <ion-list>
     <ion-item>
-      <ion-label>Més de inicio</ion-label>
-      <ion-datetime displayFormat="MMMM - YYYY" [(ngModel)]="school.dateStart"></ion-datetime>
+      <ion-label>Fecha de inicio</ion-label>
+      <ion-datetime displayFormat="D/MMMM/YYYY" [(ngModel)]="school.date_start"></ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-label>Més de finalización</ion-label>
-      <ion-datetime displayFormat="MMMM - YYYY" [(ngModel)]="school.dateEnd"></ion-datetime>
+      <ion-label>Fecha de finalización</ion-label>
+      <ion-datetime displayFormat="D/MMMM/YYYY" [(ngModel)]="school.date_end"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Días</ion-label>
-      <ion-select [(ngModel)]="school.days" multiple="true">
+      <ion-select [(ngModel)]="days" multiple="true">
         <ion-option value="1">Lunes</ion-option>
         <ion-option value="2">Martes</ion-option>
         <ion-option value="3">Miercoles</ion-option>
@@ -46,13 +46,13 @@
     </ion-item>
     <ion-item>
       <ion-label>Hora Comienzo</ion-label>
-      <ion-datetime displayFormat="HH:mm A" pickerFormat="HH mm A" [(ngModel)]="school.timeStart"></ion-datetime>
+      <ion-datetime displayFormat="HH:mm A" pickerFormat="HH:mm A" [(ngModel)]="school.time_start"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Hora Fín</ion-label>
-      <ion-datetime displayFormat="HH:mm A" pickerFormat="HH mm A" [(ngModel)]="school.timeEnd"></ion-datetime>
+      <ion-datetime displayFormat="HH:mm A" pickerFormat="HH:mm A" [(ngModel)]="school.time_end"></ion-datetime>
     </ion-item>
   </ion-list>
-  <button ion-button secondary (click)="addSchool()">Crear</button>
-  <button ion-button secondary (click)="backHome()">Go Home</button>
+  <button ion-button (click)="addSchool()">Crear grupo</button>
+  <button ion-button (click)="backHome()">Volver</button>
 </ion-content>

@@ -3,10 +3,10 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{groupLocation}} - {{groupName}} - {{groupTimeStart}} - {{groupTimeEnd}}</ion-title>
+    <ion-title>{{group?.zone.name}} - {{group?.name}} - {{group?.time_start}} - {{group?.time_end}} ({{group?.students.length}} alumnos)</ion-title>
   </ion-navbar>
 </ion-header>
-  <ion-content *ngIf="groupId && groupName" padding>
+  <ion-content padding>
     <accordion-list [title]="'Febrero 2018'" [expanded]="index===0" textColor="#FFF">
       <ion-item (click)="gotoAssist()">Día 3</ion-item>
       <ion-item (click)="gotoAssist()">Día 10</ion-item>
@@ -25,6 +25,6 @@
       <ion-item>Día 17</ion-item>
       <ion-item>Día 24</ion-item>
     </accordion-list>
-    <button ion-button secondary (click)="backHome()">Go Home</button>
+    <button ion-button (click)="backHome()">Go Home</button>
   </ion-content>
 

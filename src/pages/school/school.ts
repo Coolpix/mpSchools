@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 /**
  * Generated class for the SchoolPage page.
@@ -18,14 +18,16 @@ export class SchoolPage {
 
   public school = {
     name: '',
-    dateStart: '',
-    dateEnd: '',
-    timeStart: '',
-    timeEnd: '',
-    days: [],
-    location: ''
+    date_start: '',
+    date_end: '',
+    time_start: '',
+    time_end: '',
+    lessons: [],
+    zone: '',
+    students: []
   }
 
+  days: string[];
   locations: Location[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
@@ -39,9 +41,21 @@ export class SchoolPage {
     console.log('ionViewDidLoad SchoolPage');
   }
 
-  addSchool(){
-   this.school.days = this.calculateLessons();
-   console.log(this.school);
+  addSchool () {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    this.school.lessons = this.calculateLessons();
+    this.http.post<Group>('http://homestead.test/groups', this.school, httpOptions).subscribe(
+      result => {
+        this.backHome();
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   getDaysFromMonth(year: number, month: string, days: Array<string>){
@@ -69,14 +83,21 @@ export class SchoolPage {
   }
 
   calculateLessons(){
-    let years = [new Date(this.school.dateStart).getFullYear(), new Date(this.school.dateEnd).getFullYear()];
-    let startMonth = new Date(this.school.dateStart).getMonth();
-    let endMonth = new Date(this.school.dateEnd).getMonth();
+    let years = [new Date(this.school.date_start).getFullYear(), new Date(this.school.date_end).getFullYear()];
+    let startMonth = new Date(this.school.date_start).getMonth();
+    let endMonth = new Date(this.school.date_end).getMonth();
     let monthsStartYear = [];
     let monthsEndYear = [];
     let daysOfClass = [];
-    for (let i=startMonth; i<=11; i++) {
-      monthsStartYear.push(i);
+
+    if (years[0]===years[1]){
+      for (let i=startMonth; i<=endMonth; i++) {
+        monthsStartYear.push(i);
+      }
+    } else {
+      for (let i=startMonth; i<=11; i++) {
+        monthsStartYear.push(i);
+      }
     }
 
     if (years[0] !== years[1]) {
@@ -89,21 +110,23 @@ export class SchoolPage {
 
 
     for (let x=0; x<monthsStartYear.length; x++) {
-      let arrayOfMonth = [];
-      let daysFromMonth = this.getDaysFromMonth(years[0], monthsStartYear[x], this.school.days);
+      let daysFromMonth = this.getDaysFromMonth(years[0], monthsStartYear[x], this.days);
       for (let i=0; i<daysFromMonth.length; i++) {
-        arrayOfMonth.push(new Date(years[0], monthsStartYear[x], daysFromMonth[i]));
+        daysOfClass.push({
+          'date': new Date(years[0], monthsStartYear[x], daysFromMonth[i]),
+          'students': []
+        });
       }
-      daysOfClass.push(arrayOfMonth);
     }
 
     for (let x=0; x<monthsEndYear.length; x++) {
-      let arrayOfMonth = [];
-      let daysFromMonth = this.getDaysFromMonth(years[1], monthsEndYear[x], this.school.days);
+      let daysFromMonth = this.getDaysFromMonth(years[1], monthsEndYear[x], this.days);
       for (let i=0; i<daysFromMonth.length; i++) {
-        arrayOfMonth.push(new Date(years[1], monthsEndYear[x], daysFromMonth[i]));
+        daysOfClass.push({
+          'date':new Date(years[1], monthsEndYear[x], daysFromMonth[i]),
+          'students': []
+        });
       }
-      daysOfClass.push(arrayOfMonth);
     }
 
     return daysOfClass;
