@@ -7,24 +7,9 @@
   </ion-navbar>
 </ion-header>
   <ion-content padding>
-    <accordion-list [title]="'Febrero 2018'" [expanded]="index===0" textColor="#FFF">
-      <ion-item (click)="gotoAssist()">Día 3</ion-item>
-      <ion-item (click)="gotoAssist()">Día 10</ion-item>
-      <ion-item (click)="gotoAssist()">Día 17</ion-item>
-      <ion-item (click)="gotoAssist()">Día 24</ion-item>
+    <accordion-list [title]="dateOfLessons[i][0].nameMonth" [expanded]="index===0" textColor="#FFF" *ngFor="let lesson of dateOfLessons; let i = index">
+      <ion-item (click)="gotoAssist(lessonOfMonth.id)" *ngFor="let lessonOfMonth of lesson">{{lessonOfMonth.datePretty}}</ion-item>
     </accordion-list>
-    <accordion-list [title]="'Marzo 2018'" [expanded]="index===0" textColor="#FFF">
-      <ion-item>Día 3</ion-item>
-      <ion-item>Día 10</ion-item>
-      <ion-item>Día 17</ion-item>
-      <ion-item>Día 24</ion-item>
-    </accordion-list>
-    <accordion-list [title]="'Abril 2018'" [expanded]="index===0" textColor="#FFF">
-      <ion-item>Día 3</ion-item>
-      <ion-item>Día 10</ion-item>
-      <ion-item>Día 17</ion-item>
-      <ion-item>Día 24</ion-item>
-    </accordion-list>
-    <button ion-button (click)="backHome()">Go Home</button>
+    <button ion-button (click)="backHome()">Volver</button>
   </ion-content>
 

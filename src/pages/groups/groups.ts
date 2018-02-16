@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {AssistsPage} from "../assists/assists";
 import {HttpClient} from "@angular/common/http";
+import moment from 'moment';
 
 /**
  * Generated class for the GroupsPage page.
@@ -16,16 +17,14 @@ import {HttpClient} from "@angular/common/http";
 })
 export class GroupsPage {
   group: Group;
+  dateOfLessons: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
-
-  }
-
-  ionViewWillEnter(){
+    moment.locale('es');
     this.http.get<Group>('http://homestead.test/groups/' + this.navParams.get('id')).subscribe(
       result => {
         this.group = result;
-        console.log(this.group);
+        this.createMonths(this.group.lessons);
       });
   }
 
@@ -33,7 +32,33 @@ export class GroupsPage {
     this.navCtrl.pop();
   }
 
-  gotoAssist() {
-    this.navCtrl.push(AssistsPage);
+  gotoAssist(lessonId) {
+    this.navCtrl.push(AssistsPage,{
+      group: this.group,
+      lessonId: lessonId
+    });
+  }
+
+  createMonths(lessons){
+    let dateOfLessons: any = [];
+    let lessonsOfMonth: any = [];
+    for (let i=0;i<lessons.length;i++){
+      let month =  new Date(lessons[i].date).getMonth();
+      lessons[i].datePretty = moment(lessons[i].date).format('LL');
+      lessons[i].nameMonth = moment(lessons[i].date).format('MMMM YYYY').replace(/\b\w/g, l => l.toUpperCase());
+      if (lessonsOfMonth.length === 0){
+        lessonsOfMonth.push(lessons[i]);
+      }else{
+        if (new Date(lessonsOfMonth[0].date).getMonth() === month){
+          lessonsOfMonth.push(lessons[i]);
+        }else{
+          dateOfLessons.push(lessonsOfMonth);
+          lessonsOfMonth = [];
+          lessonsOfMonth.push(lessons[i]);
+        }
+      }
+    }
+    dateOfLessons.push(lessonsOfMonth);
+    this.dateOfLessons = dateOfLessons;
   }
 }
