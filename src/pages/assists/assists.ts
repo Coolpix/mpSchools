@@ -27,16 +27,41 @@ export class AssistsPage {
     this.http.get<Lesson>('http://homestead.test/lessons/' + this.navParams.get('lessonId')).subscribe(
       result => {
         this.lesson = result;
+        const notFormatedDate = result.date;
+        for (let i = 0; i < this.lesson.students.length; i++){
+          this.assists.push(this.lesson.students[i].id);
+        }
         this.lesson.date = moment(this.lesson.date).format('LL');
+        this.lesson.notFormatedDate = notFormatedDate;
       });
   }
 
-  modifyAssist(studentId){
-    console.log(studentId);
+  modifyAssist(student){
+    let studentIndex = this.assists.indexOf(student.id);
+    if (studentIndex > -1){
+      this.assists.splice(studentIndex, 1);
+    }else{
+      this.assists.push(student.id);
+    }
   }
 
   saveAssists() {
-    this.navCtrl.pop();
+    const body = {
+      date: this.lesson.notFormatedDate,
+      students: this.assists
+    };
+    this.http.put<Lesson>('http://homestead.test/lessons/' + this.navParams.get('lessonId'), body).subscribe(
+      result => {
+        console.log(result);
+        this.navCtrl.pop();
+      },
+      error => {
+        console.log('Error actualizando asistencias.')
+      });
+  }
+
+  hasAttended(student){
+    return this.assists.indexOf(student.id) > -1;
   }
 
   backHome() {
