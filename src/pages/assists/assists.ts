@@ -61,7 +61,9 @@ export class AssistsPage {
   }
 
   hasAttended(student){
-    return this.assists.indexOf(student.id) > -1;
+    //return this.assists.indexOf(student.id) > -1;
+    const assists = this.assists;
+    return assists.indexOf(student.id) > -1;
   }
 
   backHome() {
