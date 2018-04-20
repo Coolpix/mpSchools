@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 /**
@@ -9,7 +9,6 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-student',
   templateUrl: 'student.html',
@@ -28,7 +27,7 @@ export class StudentPage {
   groups: Group[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
-    let groupsData = this.http.get<Group[]>('http://homestead.test/groups');
+    let groupsData = this.http.get<Group[]>('http://clases-mp.eu-west-2.elasticbeanstalk.com/groups');
     groupsData.subscribe(
       result => {
       this.groups = result;
@@ -48,7 +47,7 @@ export class StudentPage {
         'Content-Type':  'application/json'
       })
     };
-    this.http.post<Group>('http://homestead.test/students', this.student, httpOptions).subscribe(
+    this.http.post<Group>('http://clases-mp.eu-west-2.elasticbeanstalk.com/students', this.student, httpOptions).subscribe(
       result => {
         this.backHome();
       },

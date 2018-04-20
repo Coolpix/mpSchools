@@ -13,6 +13,7 @@ import {SchoolPage} from "../pages/school/school";
 import {StudentPage} from "../pages/student/student";
 import {ComponentsModule} from "../components/components.module";
 import {AssistsPage} from "../pages/assists/assists";
+import {ZonePage} from "../pages/zones/zone";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {AssistsPage} from "../pages/assists/assists";
     GroupsPage,
     SchoolPage,
     StudentPage,
-    AssistsPage
+    AssistsPage,
+    ZonePage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import {AssistsPage} from "../pages/assists/assists";
     GroupsPage,
     SchoolPage,
     StudentPage,
-    AssistsPage
+    AssistsPage,
+    ZonePage
   ],
   providers: [
     StatusBar,

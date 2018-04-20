@@ -21,7 +21,7 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-    let zoneData = this.http.get<Group[]>('http://homestead.test/zones');
+    let zoneData = this.http.get<Group[]>('http://clases-mp.eu-west-2.elasticbeanstalk.com/zones');
     zoneData.subscribe(result => {
       this.zones = result;
     });
@@ -41,7 +41,7 @@ export class HomePage {
         {
           text: 'Ok',
           handler: () => {
-            this.http.delete('http://homestead.test/groups/' + idGroup).subscribe();
+            this.http.delete('http://clases-mp.eu-west-2.elasticbeanstalk.com/groups/' + idGroup).subscribe();
           }
         }
       ]

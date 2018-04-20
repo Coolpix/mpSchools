@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import moment = require("moment");
 
 /**
  * Generated class for the SchoolPage page.
@@ -9,7 +10,6 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-school',
   templateUrl: 'school.html',
@@ -31,7 +31,7 @@ export class SchoolPage {
   locations: Location[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
-    let locationsData = this.http.get<Location[]>('http://homestead.test/zones');
+    let locationsData = this.http.get<Location[]>('http://clases-mp.eu-west-2.elasticbeanstalk.com/zones');
     locationsData.subscribe(result => {
       this.locations = result;
     })
@@ -48,7 +48,7 @@ export class SchoolPage {
       })
     };
     this.school.lessons = this.calculateLessons();
-    this.http.post<Group>('http://homestead.test/groups', this.school, httpOptions).subscribe(
+    this.http.post<Group>('http://clases-mp.eu-west-2.elasticbeanstalk.com/groups', this.school, httpOptions).subscribe(
       result => {
         this.backHome();
       },
@@ -113,7 +113,7 @@ export class SchoolPage {
       let daysFromMonth = this.getDaysFromMonth(years[0], monthsStartYear[x], this.days);
       for (let i=0; i<daysFromMonth.length; i++) {
         daysOfClass.push({
-          'date': new Date(years[0], monthsStartYear[x], daysFromMonth[i]),
+          'date': moment(new Date(years[0], monthsStartYear[x], daysFromMonth[i])).format(),
           'students': []
         });
       }

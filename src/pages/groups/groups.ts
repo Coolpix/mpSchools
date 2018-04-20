@@ -21,7 +21,7 @@ export class GroupsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
     moment.locale('es');
-    this.http.get<Group>('http://homestead.test/groups/' + this.navParams.get('id')).subscribe(
+    this.http.get<Group>('http://clases-mp.eu-west-2.elasticbeanstalk.com/groups/' + this.navParams.get('id')).subscribe(
       result => {
         this.group = result;
         this.createMonths(this.group.lessons);
