@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import moment = require("moment");
 
 /**
  * Generated class for the SchoolPage page.
@@ -112,8 +111,10 @@ export class SchoolPage {
     for (let x=0; x<monthsStartYear.length; x++) {
       let daysFromMonth = this.getDaysFromMonth(years[0], monthsStartYear[x], this.days);
       for (let i=0; i<daysFromMonth.length; i++) {
+        let arrayDateToInsert = new Date(years[0], monthsStartYear[x], daysFromMonth[i]).toLocaleDateString().split('/');
+        let dateToInsert = arrayDateToInsert[2]+'-'+arrayDateToInsert[1]+'-'+arrayDateToInsert[0];
         daysOfClass.push({
-          'date': moment(new Date(years[0], monthsStartYear[x], daysFromMonth[i])).format(),
+          'date': dateToInsert,
           'students': []
         });
       }
@@ -122,13 +123,14 @@ export class SchoolPage {
     for (let x=0; x<monthsEndYear.length; x++) {
       let daysFromMonth = this.getDaysFromMonth(years[1], monthsEndYear[x], this.days);
       for (let i=0; i<daysFromMonth.length; i++) {
+        let arrayDateToInsert = new Date(years[1], monthsEndYear[x], daysFromMonth[i]).toLocaleDateString().split('/');
+        let dateToInsert = arrayDateToInsert[2]+'-'+arrayDateToInsert[1]+'-'+arrayDateToInsert[0];
         daysOfClass.push({
-          'date':new Date(years[1], monthsEndYear[x], daysFromMonth[i]),
+          'date': dateToInsert,
           'students': []
         });
       }
     }
-
     return daysOfClass;
   }
 }

@@ -26,11 +26,11 @@
   <ion-list>
     <ion-item>
       <ion-label>Fecha de inicio</ion-label>
-      <ion-datetime displayFormat="D/MMMM/YYYY" [(ngModel)]="school.date_start"></ion-datetime>
+      <ion-datetime displayFormat="D/MMMM/YYYY" min="2017" max="2050-12-31" [(ngModel)]="school.date_start"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Fecha de finalización</ion-label>
-      <ion-datetime displayFormat="D/MMMM/YYYY" [(ngModel)]="school.date_end"></ion-datetime>
+      <ion-datetime displayFormat="D/MMMM/YYYY" min="2017" max="2050-12-31" [(ngModel)]="school.date_end"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Días</ion-label>
