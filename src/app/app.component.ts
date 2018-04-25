@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { StudentPage } from "../pages/student/student";
 import { SchoolPage } from "../pages/school/school";
 import {ZonePage} from "../pages/zones/zone";
+import {ListStudentsPage} from "../pages/listStudents/listStudents";
 
 @Component({
   templateUrl: 'app.html'
@@ -47,6 +48,12 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.push(ZonePage);
+  }
+
+  openPageListStudents() {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.push(ListStudentsPage);
   }
 
   openPageCourse() {
