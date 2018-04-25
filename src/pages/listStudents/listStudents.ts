@@ -38,7 +38,7 @@ export class ListStudentsPage {
       if (arrayOfLetterName.length === 0){
         arrayOfLetterName.push(students[i].name);
       }else{
-        let letterToCheck = students[i].name.trim().split('')[0];
+        let letterToCheck = students[i].name.toUpperCase().trim().split('')[0];
         if (letterToCheck === students[i-1].name.toUpperCase().trim().split('')[0]){
           arrayOfLetterName.push(students[i].name)
         }else{
@@ -47,7 +47,7 @@ export class ListStudentsPage {
           arrayOfLetterName.push(students[i].name);
         }
       }
-      console.log(arrayOfLetterName);
     }
+    console.log(arrayOfNames);
   }
 }
