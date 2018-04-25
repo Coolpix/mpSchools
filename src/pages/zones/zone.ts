@@ -19,7 +19,8 @@ export class ZonePage {
     name: '',
     latitude: '',
     longitude: '',
-    groups: []
+    groups: [],
+    courses: []
   }
 
   groups: Group[];

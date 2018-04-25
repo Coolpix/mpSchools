@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AlertController, NavController} from 'ionic-angular';
 import { GroupsPage } from "../groups/groups";
 import { HttpClient } from "@angular/common/http";
+import {CoursesPage} from "../courses/courses";
 
 @Component({
   selector: 'page-home',
@@ -17,6 +18,14 @@ export class HomePage {
     // we wouldn't want the back button to show in this scenario
     this.navCtrl.push(GroupsPage ,{
       id: group.id
+    });
+  }
+
+  openPageCourses(zoneName, course) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.navCtrl.push(CoursesPage ,{
+      id: course.id
     });
   }
 
@@ -42,6 +51,28 @@ export class HomePage {
           text: 'Ok',
           handler: () => {
             this.http.delete('http://clases-mp.eu-west-2.elasticbeanstalk.com/groups/' + idGroup).subscribe();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  deleteCourse(idCourse) {
+    let confirm = this.alertCtrl.create({
+      title: '¿Seguro que desea borrar este curso?',
+      message: 'Los cambios no se podrán deshacer.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            this.http.delete('http://clases-mp.eu-west-2.elasticbeanstalk.com/courses/' + idCourse).subscribe();
           }
         }
       ]

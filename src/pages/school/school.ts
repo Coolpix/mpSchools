@@ -28,8 +28,13 @@ export class SchoolPage {
 
   days: string[];
   locations: Location[];
+  private type: number;
+  private title: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+    debugger;
+    this.type = this.navParams.get('type');
+    this.title = this.type===0?'Nueva Escuela':'Nuevo Curso';
     let locationsData = this.http.get<Location[]>('http://clases-mp.eu-west-2.elasticbeanstalk.com/zones');
     locationsData.subscribe(result => {
       this.locations = result;
@@ -47,7 +52,8 @@ export class SchoolPage {
       })
     };
     this.school.lessons = this.calculateLessons();
-    this.http.post<Group>('http://clases-mp.eu-west-2.elasticbeanstalk.com/groups', this.school, httpOptions).subscribe(
+    let url = this.type===0?'http://clases-mp.eu-west-2.elasticbeanstalk.com/groups':'http://clases-mp.eu-west-2.elasticbeanstalk.com/courses';
+    this.http.post<Group>(url, this.school, httpOptions).subscribe(
       result => {
         this.backHome();
       },

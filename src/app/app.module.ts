@@ -14,6 +14,7 @@ import {StudentPage} from "../pages/student/student";
 import {ComponentsModule} from "../components/components.module";
 import {AssistsPage} from "../pages/assists/assists";
 import {ZonePage} from "../pages/zones/zone";
+import {CoursesPage} from "../pages/courses/courses";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {ZonePage} from "../pages/zones/zone";
     SchoolPage,
     StudentPage,
     AssistsPage,
-    ZonePage
+    ZonePage,
+    CoursesPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import {ZonePage} from "../pages/zones/zone";
     SchoolPage,
     StudentPage,
     AssistsPage,
-    ZonePage
+    ZonePage,
+    CoursesPage
   ],
   providers: [
     StatusBar,

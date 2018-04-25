@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{group?.zone.name}} - {{group?.name}} - {{group?.time_start}} - {{group?.time_end}} ({{group?.students.length}} alumnos)</ion-title>
+  </ion-navbar>
+</ion-header>
+  <ion-content padding>
+    <accordion-list [title]="dateOfLessons[i][0].nameMonth" [expanded]="index===0" textColor="#FFF" *ngFor="let lesson of dateOfLessons; let i = index">
+      <ion-item (click)="gotoAssist(lessonOfMonth.id)" *ngFor="let lessonOfMonth of lesson">{{lessonOfMonth.datePretty}}</ion-item>
+    </accordion-list>
+    <button ion-button (click)="backHome()">Volver</button>
+  </ion-content>
+
